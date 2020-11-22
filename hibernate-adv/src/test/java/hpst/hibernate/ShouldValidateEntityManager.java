@@ -26,7 +26,6 @@ import com.vladmihalcea.sql.SQLStatementCountValidator;
 @TestMethodOrder(Alphanumeric.class)
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 @ActiveProfiles("test")
-@Commit
 class ShouldValidateEntityManager {
 	
 	@Autowired
@@ -40,6 +39,7 @@ class ShouldValidateEntityManager {
 
 	@Test
 	void insertPost() {
+		entityManager.clear();;
 		PostDetails postDetail =new PostDetails();
 		postDetail.setCreatedBy("Harpal  Singh");
 		postDetail.setCreatedOn(new Date());
@@ -48,6 +48,8 @@ class ShouldValidateEntityManager {
 		post.setId(1l);
 		post.setDetails(postDetail);
 		post.setTitle("My First Post");
+		post.setPostType(PostType.GENERAL);
+
 		post=entityManager.persistAndFlush(post);
 		
 
@@ -55,6 +57,8 @@ class ShouldValidateEntityManager {
 		post2.setId(2l);
 		post2.setDetails(null);
 		post2.setTitle("My Second Post");
+		post2.setPostType(PostType.POLITICAL);
+
 		post2=entityManager.persistAndFlush(post2);
 		
 	

@@ -1,5 +1,7 @@
 package hpst.hibernate;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.LazyToOne;
 import org.hibernate.annotations.LazyToOneOption;
 
@@ -18,6 +20,19 @@ public class Post {
     private Long id;
 
     private String title;
+
+    public PostType getPostType() {
+        return postType;
+    }
+
+    public void setPostType(PostType postType) {
+        this.postType = postType;
+    }
+
+    @Enumerated(EnumType.STRING)
+    @Column(length = 10)
+     private PostType postType;
+
 
     @OneToMany(
         mappedBy = "post",
