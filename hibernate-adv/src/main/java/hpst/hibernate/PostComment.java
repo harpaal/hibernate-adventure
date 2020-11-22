@@ -12,7 +12,7 @@ public class PostComment {
     @Id
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Post post;
 
     private String review;
